@@ -1,0 +1,24 @@
+info:
+  name: create_item
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{base_url}}/api/items"
+  body:
+    type: json
+    data: |
+      {
+          "title": "Ноутбук Dell",
+          "description": "Игровой ноутбук в отличном состоянии",
+          "price": 50000,
+          "imageUrl": "https://example.com/laptop.jpg"
+        }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

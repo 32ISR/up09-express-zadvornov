@@ -1,0 +1,29 @@
+opencollection: 1.0.0
+
+info:
+  name: zadvornov_feed
+config:
+  proxy:
+    inherit: true
+    config:
+      protocol: http
+      hostname: ""
+      port: ""
+      auth:
+        username: ""
+        password: ""
+      bypassProxy: ""
+
+request:
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJ0ZXN0dXNlcjU0IiwiZW1haWwiOiJ0ZXN0MzRAZXhhbXBsZS5jb20iLCJyb2xlIjoidXNlciIsImNyZWF0ZWRBdCI6IjIwMjYtMDMtMTQgMDg6MzQ6MjMiLCJpYXQiOjE3NzM0NzcyNjMsImV4cCI6MTc3MzU2MzY2M30.BiAs0RCkCbRH6SfQs_sIQLlPXNciWpPlob4PKCoIS58
+  variables:
+    - name: base_url
+      value: https://scaling-yodel-v69v747jj7w6fxv7-3000.app.github.dev
+bundled: false
+extensions:
+  bruno:
+    ignore:
+      - node_modules
+      - .git
