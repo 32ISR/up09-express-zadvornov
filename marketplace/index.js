@@ -25,7 +25,7 @@ const auth = (req, res, next) => {
         req.user = decoded
         next()
     } catch (error) {
-        return req.status(403).json({ error: "Invalid or expired token" })
+        return res.status(403).json({ error: "Invalid or expired token" })
     }
 }
 
@@ -185,13 +185,17 @@ app.post("/api/items", auth, (req, res) => {
     }
 })
 
-app.delete("api/items/:id", auth, (req, res) => {
+app.delete("/api/items/:id", auth, (req, res) => {
     try{
         const {id } = req.params
         const item = db.prepare("SELECT * FROM items WHERE id = ?").get(id)
-        if(!item) {return res.status(404).json({error: "Item not find"})}
+        if(!item) {return res.status(404).json({error: "Item not found"})}
 
+        if(item.userId !== req.user.id)
+            return res.status(403).json({error: "cannot delete others items"})
         
+        db.prepare("DELETE FROM items WHERE id = ?").run(id)
+        return res.status(200).json({message: "item deleted"})
 
     }catch(error){
         console.error(error)
